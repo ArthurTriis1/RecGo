@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RecGO</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_search_locals">search_locals_activity</string>
+    <string name="tab_locals">Tab 1</string>
+    <string name="tab_trails">Tab 2</string>
+    <string name="title_activity_list_all_locals">ListAllLocalsActivity</string>
+    <string name="tab_locais">Locais</string>
+    <string name="tab_trilhas">Trilhas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_recgo">Logo RecGO</string>
+    <string name="icone_do_usuario">Icone do usuario</string>
+    <string name="visualizar_locais">Visualizar Locais</string>
+</resources>

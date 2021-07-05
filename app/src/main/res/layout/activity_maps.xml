@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraZoom="18"
+        map:mapType="normal"
+        tools:context=".MapsActivity" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="@+id/map"
+        android:contentDescription="@string/logo_recgo" />
+
+    <ImageView
+        android:id="@+id/maps_user_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/user_icon"
+        map:layout_constraintBottom_toBottomOf="@+id/map"
+        map:layout_constraintStart_toStartOf="@+id/map"
+        android:contentDescription="@string/icone_do_usuario" />
+
+    <ImageView
+        android:id="@+id/maps_view_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/view_icon"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/visualizar_locais" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/roboto_bold"
+        tools:text="20"
+        android:text="20"
+        android:textColor="@color/primary"
+        android:textSize="20sp"
+        map:layout_constraintEnd_toEndOf="@+id/maps_user_icon"
+        map:layout_constraintTop_toTopOf="@+id/maps_user_icon" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Nome"
+        android:textColor="@color/primary"
+        map:layout_constraintStart_toEndOf="@+id/maps_user_icon"
+        map:layout_constraintTop_toTopOf="@+id/maps_user_icon"
+        tools:text="Nome" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="110dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="4dp"
+        android:max="100"
+        android:progress="40"
+        android:progressTint="@color/primary"
+        map:layout_constraintStart_toStartOf="@+id/textView2"
+        map:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
