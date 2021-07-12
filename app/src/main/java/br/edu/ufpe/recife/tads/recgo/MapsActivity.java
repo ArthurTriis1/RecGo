@@ -20,8 +20,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
@@ -59,7 +62,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         mMap.setOnMyLocationClickListener(
                 new GoogleMap.OnMyLocationClickListener() {
                     @Override
@@ -70,6 +72,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
 
         this.setMyLocaleEnabled();
+
+
+        findRoundLocations(googleMap);
     }
 
     private void requestPermission() {
@@ -137,6 +142,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(AllLocalsActivity);
     }
 
+    private void findRoundLocations(GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng marco0 = new LatLng(-8.063167, -34.871107);
+        mMap.addMarker( new MarkerOptions().
+                position(marco0).
+                title("Marco0").
+                icon(BitmapDescriptorFactory.defaultMarker(240)));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                goTo(null, LocationDetailActivity.class);
+                return false;
+            }
+        });
+    }
 
 
 }
