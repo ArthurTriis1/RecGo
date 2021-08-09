@@ -1,7 +1,6 @@
-package br.edu.ufpe.recife.tads.recgo;
+package br.edu.ufpe.recife.tads.recgo.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -10,6 +9,9 @@ import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import br.edu.ufpe.recife.tads.recgo.activitys.fragments.AllLocalsFragment;
+import br.edu.ufpe.recife.tads.recgo.activitys.fragments.AllTravelsFragment;
+import br.edu.ufpe.recife.tads.recgo.R;
 import br.edu.ufpe.recife.tads.recgo.ui.adapters.ViewPageAdapter;
 
 public class ListAllLocalsActivity extends AppCompatActivity {

@@ -1,9 +1,11 @@
-package br.edu.ufpe.recife.tads.recgo;
+package br.edu.ufpe.recife.tads.recgo.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import br.edu.ufpe.recife.tads.recgo.R;
 
 public class LocationDetailActivity extends AppCompatActivity {
 

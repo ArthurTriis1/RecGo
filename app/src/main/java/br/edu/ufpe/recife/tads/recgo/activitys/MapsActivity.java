@@ -1,4 +1,4 @@
-package br.edu.ufpe.recife.tads.recgo;
+package br.edu.ufpe.recife.tads.recgo.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -21,12 +21,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import br.edu.ufpe.recife.tads.recgo.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".SignInActivity">
+    tools:context=".activitys.SignInActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/logo_great" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/sign_in_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/sign_in_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -49,7 +49,7 @@
         android:textColorHint="#909090"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_email" />
 
     <Button
         android:id="@+id/sign_in_login_button"
@@ -59,7 +59,7 @@
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_password" />
 
     <Button
         android:id="@+id/sign_in_register_button"
