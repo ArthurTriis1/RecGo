@@ -15,6 +15,7 @@ import br.edu.ufpe.recife.tads.recgo.api.RecGoApi;
 import br.edu.ufpe.recife.tads.recgo.api.services.AuthService;
 import br.edu.ufpe.recife.tads.recgo.models.dto.SignResponseDTO;
 import br.edu.ufpe.recife.tads.recgo.models.dto.SignUpDTO;
+import br.edu.ufpe.recife.tads.recgo.services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText inputNickname, inputEmail, inputPassword, inputConfirmPassword;
 
     AuthService authService;
+    UserService userService;
 
     Context ctx = this;
 
@@ -34,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         authService = new RecGoApi().getAuthService();
+        userService = UserService.getInstance();
 
         setContentView(R.layout.activity_sign_up);
         defineViews();
@@ -83,6 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onResponse(Call<SignResponseDTO> call, Response<SignResponseDTO> response) {
                 SignResponseDTO signResponseDTO = response.body();
                 if(signResponseDTO != null){
+                    userService.setUserData(signResponseDTO);
                     Toast.makeText(ctx, signResponseDTO.getJwt(), Toast.LENGTH_LONG).show();
                     goTo(null, SignInActivity.class);
                 } else {

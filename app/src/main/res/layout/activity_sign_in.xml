@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/logo_great" />
 
     <EditText
+        android:text="arthurfelandrade@gmail.com"
         android:id="@+id/sign_in_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
+        android:text="123456"
         android:id="@+id/sign_in_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

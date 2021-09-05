@@ -62,7 +62,7 @@
         map:layout_constraintTop_toTopOf="@+id/maps_user_icon" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/maps_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -82,7 +82,7 @@
         android:max="100"
         android:progress="40"
         android:progressTint="@color/primary"
-        map:layout_constraintStart_toStartOf="@+id/textView2"
-        map:layout_constraintTop_toBottomOf="@+id/textView2" />
+        map:layout_constraintStart_toStartOf="@+id/maps_user_name"
+        map:layout_constraintTop_toBottomOf="@+id/maps_user_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
