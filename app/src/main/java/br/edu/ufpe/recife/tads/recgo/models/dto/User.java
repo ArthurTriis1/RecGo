@@ -1,7 +1,9 @@
 package br.edu.ufpe.recife.tads.recgo.models.dto;
 
+import java.util.List;
+
 public class User {
-    private float id;
+    private long id;
     private String username;
     private String email;
     private String provider;
@@ -10,11 +12,18 @@ public class User {
     Role RoleObject;
     private String created_at;
     private String updated_at;
+    private List<Item> storageItems;
+    private Item headItem;
+    private Item armItem;
+    private Item backgroundItem;
+    private Item legItem;
+    private Item faceItem;
+    private Item handItem;
 
 
     // Getter Methods
 
-    public float getId() {
+    public long getId() {
         return id;
     }
 
@@ -52,7 +61,7 @@ public class User {
 
     // Setter Methods
 
-    public void setId(float id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -86,5 +95,61 @@ public class User {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public List<Item> getStorageItems() {
+        return storageItems;
+    }
+
+    public void setStorageItems(List<Item> storageItems) {
+        this.storageItems = storageItems;
+    }
+
+    public Item getHeadItem() {
+        return headItem;
+    }
+
+    public void setHeadItem(Item headItem) {
+        this.headItem = headItem;
+    }
+
+    public Item getArmItem() {
+        return armItem;
+    }
+
+    public void setArmItem(Item armItem) {
+        this.armItem = armItem;
+    }
+
+    public Item getBackgroundItem() {
+        return backgroundItem;
+    }
+
+    public void setBackgroundItem(Item backgroundItem) {
+        this.backgroundItem = backgroundItem;
+    }
+
+    public Item getLegItem() {
+        return legItem;
+    }
+
+    public void setLegItem(Item legItem) {
+        this.legItem = legItem;
+    }
+
+    public Item getFaceItem() {
+        return faceItem;
+    }
+
+    public void setFaceItem(Item faceItem) {
+        this.faceItem = faceItem;
+    }
+
+    public Item getHandItem() {
+        return handItem;
+    }
+
+    public void setHandItem(Item handItem) {
+        this.handItem = handItem;
     }
 }

@@ -77,7 +77,6 @@ public class SignInActivity extends AppCompatActivity {
                 SignResponseDTO signResponseDTO = response.body();
                 if(signResponseDTO != null){
                     userService.setUserData(signResponseDTO);
-                    Toast.makeText(ctx, signResponseDTO.getJwt(), Toast.LENGTH_LONG).show();
                     goTo(null, MapsActivity.class);
                 } else {
                     Toast.makeText(ctx, "Erro na requisição, verifique os dados cadatrais", Toast.LENGTH_LONG).show();

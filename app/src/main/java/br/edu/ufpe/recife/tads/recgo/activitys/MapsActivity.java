@@ -37,6 +37,7 @@ import br.edu.ufpe.recife.tads.recgo.api.services.PlaceService;
 import br.edu.ufpe.recife.tads.recgo.models.dto.Place;
 import br.edu.ufpe.recife.tads.recgo.models.dto.SignResponseDTO;
 import br.edu.ufpe.recife.tads.recgo.services.UserService;
+import br.edu.ufpe.recife.tads.recgo.utils.DIstanceCalculator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private PlaceService placeService;
 
+    private Location location;
+
     Context ctx = this;
 
     @Override
@@ -70,9 +73,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        currentLocation();
         setAllViews();
         requestPermission();
-        currentLocation();
         setUserData();
     }
 
@@ -97,13 +100,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new GoogleMap.OnMyLocationClickListener() {
                     @Override
                     public void onMyLocationClick(@NonNull Location location) {
-                        Toast.makeText(MapsActivity.this,
+                        Toast.makeText(ctx,
                                 "Você está aqui!", Toast.LENGTH_SHORT).show();
                     }
                 });
 
         this.setMyLocaleEnabled();
-
 
         findRoundLocations(googleMap);
     }
@@ -135,14 +137,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Task<Location> task = this.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
-            public void onSuccess(Location location) {
-                if(location!=null) {
+            public void onSuccess(Location actualLocation) {
+                if(actualLocation!=null) {
                     mMap.moveCamera(
                             CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(
-                                            location.getLatitude(),
-                                            location.getLongitude()
+                                            actualLocation.getLatitude(),
+                                            actualLocation.getLongitude()
                                     ),18));
+
+                    location = actualLocation;
                 }
             }
         });
@@ -212,8 +216,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public boolean onMarkerClick(Marker marker) {
                     Place place = (Place) marker.getTag();
 
+                    boolean canAccess = DIstanceCalculator.canAccess(place.getCoordinates().latitude, place.getCoordinates().longitude, location.getLatitude(), location.getLongitude());
+
                     Intent AllLocalsActivity = new Intent(ctx, LocationDetailActivity.class);
                     AllLocalsActivity.putExtra("place", place);
+                    AllLocalsActivity.putExtra("canAccess", canAccess);
                     startActivity(AllLocalsActivity);
                     return false;
                 }

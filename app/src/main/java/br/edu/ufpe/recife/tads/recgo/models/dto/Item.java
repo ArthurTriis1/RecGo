@@ -3,24 +3,21 @@ package br.edu.ufpe.recife.tads.recgo.models.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Place implements Serializable {
-    private int id;
+public class Item implements Serializable {
+    private Integer id;
     private String name;
-    private String location;
-    private int experience;
+    private String kind;
+    private int place;
     private Date published_at;
     private Date created_at;
     private Date updated_at;
-    private String description;
-    private Coordinates coordinates;
     private Image image;
-    private Item item;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,20 +29,20 @@ public class Place implements Serializable {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getKind() {
+        return kind;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
-    public int getExperience() {
-        return experience;
+    public int getPlace() {
+        return place;
     }
 
-    public void setExperience(int experience) {
-        this.experience = experience;
+    public void setPlace(int place) {
+        this.place = place;
     }
 
     public Date getPublished_at() {
@@ -70,30 +67,6 @@ public class Place implements Serializable {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
     }
 
     public Image getImage() {

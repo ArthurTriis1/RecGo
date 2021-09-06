@@ -6,7 +6,9 @@ import br.edu.ufpe.recife.tads.recgo.models.dto.User;
 public class UserService {
     private static UserService single_instance = null;
 
-    private SignResponseDTO signResponseDTO;
+    private String jwt;
+
+    private User user;
 
     public static UserService getInstance()
     {
@@ -17,15 +19,23 @@ public class UserService {
     }
 
     public User getUser() {
-        return signResponseDTO.getUser();
+        return user;
     }
 
     public String getJWT() {
-        return signResponseDTO.getJwt();
+        return jwt;
     }
 
     public void setUserData(SignResponseDTO signResponseDTO) {
-        this.signResponseDTO = signResponseDTO;
+        this.user = signResponseDTO.getUser();
+        this.jwt = signResponseDTO.getJwt();
     }
 
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

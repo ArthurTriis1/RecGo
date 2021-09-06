@@ -2,6 +2,7 @@ package br.edu.ufpe.recife.tads.recgo.api;
 
 import br.edu.ufpe.recife.tads.recgo.api.services.AuthService;
 import br.edu.ufpe.recife.tads.recgo.api.services.PlaceService;
+import br.edu.ufpe.recife.tads.recgo.api.services.UserManagementService;
 import br.edu.ufpe.recife.tads.recgo.utils.PropertiesConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -14,6 +15,7 @@ public class RecGoApi {
 
     private final AuthService authService;
     private final PlaceService placeService;
+    private final UserManagementService userManagementService;
 
     public RecGoApi() {
         OkHttpClient client = configureClient();
@@ -25,6 +27,7 @@ public class RecGoApi {
                 .build();
         authService = retrofit.create(AuthService.class);
         placeService = retrofit.create(PlaceService.class);
+        userManagementService = retrofit.create(UserManagementService.class);
     }
 
     private OkHttpClient configureClient() {
@@ -40,4 +43,6 @@ public class RecGoApi {
     }
 
     public  PlaceService getPlaceService() { return placeService; }
+
+    public UserManagementService getUserManagementService() { return userManagementService; };
 }
