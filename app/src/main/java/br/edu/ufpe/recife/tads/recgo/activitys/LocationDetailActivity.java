@@ -108,7 +108,7 @@ public class LocationDetailActivity extends AppCompatActivity {
             }
         });
 
-        if(!canAccess){
+        if(!canAccess && !alreadyHaveItem){
             viewItem.setAlpha(0.4F);
         }
     }

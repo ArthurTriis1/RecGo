@@ -1,25 +1,23 @@
 package br.edu.ufpe.recife.tads.recgo.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+
+import java.util.List;
 
 import br.edu.ufpe.recife.tads.recgo.R;
 import br.edu.ufpe.recife.tads.recgo.api.RecGoApi;
 import br.edu.ufpe.recife.tads.recgo.api.services.UserManagementService;
 import br.edu.ufpe.recife.tads.recgo.models.dto.Item;
-import br.edu.ufpe.recife.tads.recgo.models.dto.RequestWearItemDTO;
-import br.edu.ufpe.recife.tads.recgo.models.dto.SignResponseDTO;
 import br.edu.ufpe.recife.tads.recgo.models.dto.User;
 import br.edu.ufpe.recife.tads.recgo.services.UserService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import br.edu.ufpe.recife.tads.recgo.ui.adapters.InventoryRecyclerAdapter;
 
 public class InventoryActivity extends AppCompatActivity {
 
@@ -27,6 +25,10 @@ public class InventoryActivity extends AppCompatActivity {
     private UserManagementService userManagementService;
     private User user;
     private String jwt;
+
+    private RecyclerView recyclerView;
+    private List<Item> itemsList;
+    private InventoryRecyclerAdapter inventoryRecyclerAdapter;
 
     Context ctx = this;
 
@@ -40,7 +42,11 @@ public class InventoryActivity extends AppCompatActivity {
         userManagementService = new RecGoApi().getUserManagementService();
 
         this.user = userService.getUser();
+        this.itemsList = this.user.getStorageItems();
         this.jwt = userService.getJWT();
+
+        configRecyclerView();
+
 
 //        Call<User> userCall = userManagementService.getUser(this.user.getId(), this.jwt);
 
@@ -63,33 +69,17 @@ public class InventoryActivity extends AppCompatActivity {
 //        });
     }
 
+    private void configRecyclerView() {
+        recyclerView = findViewById(R.id.inventory_recyclerview);
+        inventoryRecyclerAdapter = new InventoryRecyclerAdapter(this, itemsList, userManagementService, user.getId(), jwt);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(inventoryRecyclerAdapter);
+    }
+
     private void goTo(View v, Class c){
         Intent AllLocalsActivity = new Intent(this, c);
         startActivity(AllLocalsActivity);
-    }
-
-    private void updateWearItem(Item item){
-        RequestWearItemDTO requestWearItemDTO = new RequestWearItemDTO(item);
-
-        Call<User> updateWearItemCall = userManagementService.updateWearItem(requestWearItemDTO, this.user.getId(), jwt);
-
-        updateWearItemCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User user = response.body();
-                if(user != null){
-                    userService.setUser(user);
-                    Toast toast = Toast.makeText(ctx, item.getName() + " vestido, vá para La Ursa ver o resultado", Toast.LENGTH_LONG);
-                    toast.show();
-                } else {
-                    Toast.makeText(ctx, "Erro ao vestir item, tente novamente mais tarde", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(ctx, "Erro ao vestir item, tente novamente mais tarde", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }

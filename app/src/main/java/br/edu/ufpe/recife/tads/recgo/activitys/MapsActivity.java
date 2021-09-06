@@ -88,7 +88,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         this.userIcon = findViewById(R.id.maps_user_icon);
         this.viewIcon = findViewById(R.id.maps_view_icon);
         this.viewUserName = findViewById(R.id.maps_user_name);
-        this.viewIcon.setOnClickListener(v -> {this.goTo(v, ListAllLocalsActivity.class);});
+        this.viewIcon.setOnClickListener(v -> {
+            Intent AllLocalsActivity = new Intent(ctx, ListAllLocalsActivity.class);
+            AllLocalsActivity.putExtra("location", location);
+            startActivity(AllLocalsActivity);
+        });
         this.userIcon.setOnClickListener(v -> {this.goTo(v, UserProfileActivity.class);});
     }
 
@@ -135,21 +139,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void currentLocation() {
         Task<Location> task = this.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location actualLocation) {
-                if(actualLocation!=null) {
-                    mMap.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(
-                                            actualLocation.getLatitude(),
-                                            actualLocation.getLongitude()
-                                    ),18));
+        if(task != null){
+            task.addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location actualLocation) {
+                    if(actualLocation!=null) {
+                        mMap.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(
+                                                actualLocation.getLatitude(),
+                                                actualLocation.getLongitude()
+                                        ),18));
 
-                    location = actualLocation;
+                        location = actualLocation;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private void setMyLocaleEnabled(){
@@ -215,6 +221,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public boolean onMarkerClick(Marker marker) {
                     Place place = (Place) marker.getTag();
+
+                    location = mMap.getMyLocation();
 
                     boolean canAccess = DIstanceCalculator.canAccess(place.getCoordinates().latitude, place.getCoordinates().longitude, location.getLatitude(), location.getLongitude());
 

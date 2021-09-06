@@ -8,17 +8,16 @@
     tools:context=".activitys.UserProfileActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/laursa_background_item"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/recife" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -26,7 +25,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="120dp"
         android:background="@color/primary"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/laursa_background_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +53,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/laursa_background_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/laursa_background_item"
         app:layout_constraintVertical_bias="0.8"
         app:srcCompat="@drawable/user_profile_gradient_mask" />
 
@@ -118,8 +117,8 @@
         android:fontFamily="@font/roboto"
         android:text="Leão do Norte"
         android:textColor="@color/dark_blue"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/laursa_background_item"
+        app:layout_constraintStart_toStartOf="@+id/laursa_background_item"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
@@ -134,7 +133,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/laursa_background_item"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
     <TextView
@@ -164,5 +163,53 @@
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/laursa_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/laursa_background_item"
+        app:layout_constraintStart_toStartOf="@+id/laursa_background_item"
+        app:srcCompat="@drawable/laursa_corpo" />
+
+    <ImageView
+        android:id="@+id/laursa_arm_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="@+id/laursa_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/laursa_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/laursa_cabeca" />
+
+    <ImageView
+        android:id="@+id/laursa_hand_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="@+id/laursa_body"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/laursa_head_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/laursa_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
