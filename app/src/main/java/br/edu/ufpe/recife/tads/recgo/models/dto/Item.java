@@ -12,6 +12,7 @@ public class Item implements Serializable {
     private Date created_at;
     private Date updated_at;
     private Image image;
+    private Integer experience;
 
     public Integer getId() {
         return id;
@@ -75,5 +76,13 @@ public class Item implements Serializable {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 }

@@ -13,6 +13,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +35,10 @@ import java.util.List;
 import br.edu.ufpe.recife.tads.recgo.R;
 import br.edu.ufpe.recife.tads.recgo.api.RecGoApi;
 import br.edu.ufpe.recife.tads.recgo.api.services.PlaceService;
+import br.edu.ufpe.recife.tads.recgo.models.dto.LevelInfo;
 import br.edu.ufpe.recife.tads.recgo.models.dto.Place;
 import br.edu.ufpe.recife.tads.recgo.models.dto.SignResponseDTO;
+import br.edu.ufpe.recife.tads.recgo.models.dto.User;
 import br.edu.ufpe.recife.tads.recgo.services.UserService;
 import br.edu.ufpe.recife.tads.recgo.utils.DIstanceCalculator;
 import retrofit2.Call;
@@ -50,6 +53,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ImageView userIcon;
     private ImageView viewIcon;
     private TextView viewUserName;
+    private TextView viewUserLevel;
+    private ProgressBar progressBar;
 
     private UserService userService;
 
@@ -76,12 +81,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         currentLocation();
         setAllViews();
         requestPermission();
+
+    }
+
+    protected void onResume() {
+        super.onResume();
         setUserData();
     }
 
     private void setUserData() {
-        String userName = userService.getUser().getUsername();
-        this.viewUserName.setText(userName);
+        User user = userService.getUser();
+        this.viewUserName.setText(user.getUsername());
+        LevelInfo levelInfo = new LevelInfo(user);
+        this.viewUserLevel.setText(levelInfo.getLevel() + "");
+        this.progressBar.setProgress(levelInfo.getPartialExperience());
     }
 
     private void setAllViews() {
@@ -94,6 +107,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(AllLocalsActivity);
         });
         this.userIcon.setOnClickListener(v -> {this.goTo(v, UserProfileActivity.class);});
+
+        this.progressBar = findViewById(R.id.maps_progressbar);
+        this.viewUserLevel = findViewById(R.id.maps_user_level);
     }
 
     @Override

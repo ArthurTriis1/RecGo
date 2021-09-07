@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import br.edu.ufpe.recife.tads.recgo.R;
 import br.edu.ufpe.recife.tads.recgo.api.RecGoApi;
 import br.edu.ufpe.recife.tads.recgo.api.services.UserManagementService;
 import br.edu.ufpe.recife.tads.recgo.models.dto.Image;
+import br.edu.ufpe.recife.tads.recgo.models.dto.LevelInfo;
 import br.edu.ufpe.recife.tads.recgo.models.dto.User;
 import br.edu.ufpe.recife.tads.recgo.services.UserService;
 import br.edu.ufpe.recife.tads.recgo.utils.PropertiesConfig;
@@ -33,6 +35,12 @@ public class UserProfileActivity extends AppCompatActivity {
     ImageView laursaArmItem;
     ImageView laursaHandItem;
     ImageView laursaBackgroundItem;
+
+    TextView profileLevel;
+    ProgressBar progressBar;
+
+    TextView profileName;
+
 
     UserManagementService userManagementService;
     UserService userService;
@@ -59,6 +67,7 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setLaursaWear();
+        setLevelInfos();
     }
 
     private void defineViews(){
@@ -81,6 +90,12 @@ public class UserProfileActivity extends AppCompatActivity {
         laursaArmItem = findViewById(R.id.laursa_arm_item);
         laursaHandItem = findViewById(R.id.laursa_hand_item);
         laursaBackgroundItem = findViewById(R.id.laursa_background_item);
+
+        profileName = findViewById(R.id.user_profile_username);
+        profileName.setText(user.getUsername());
+
+        profileLevel = findViewById(R.id.profile_level);
+        progressBar = findViewById(R.id.profile_progressbar);
     }
 
     private void goTo(View v, Class c){
@@ -108,6 +123,12 @@ public class UserProfileActivity extends AppCompatActivity {
                 Toast.makeText(ctx, "Erro ao buscar dados, tente novamente mais tarde", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void setLevelInfos(){
+        LevelInfo levelInfo = new LevelInfo(user);
+        profileLevel.setText(levelInfo.getLevel() + "");
+        progressBar.setProgress(levelInfo.getPartialExperience());
     }
 
     private void wearLaursa(User user){
